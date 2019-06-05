@@ -6,7 +6,7 @@ It needs a "requests" module.But i don't know how to fix it in linux. So i noly 
 first : git clone https://github.com/yuer020611/QQcilentkey
 
 
-seconed : cd QQcilentkey
+second : cd QQcilentkey
 
 
 third : pip install -r requirements.txt
