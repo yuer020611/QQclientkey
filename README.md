@@ -6,13 +6,13 @@ It needs a "requests" module.But i don't know how to fix it in linux. So i will 
 first : git clone https://github.com/yuer020611/QQcilentkey
 
 
-second : cd QQcilentkey
+then  : cd QQcilentkey
 
 
-third : pip install -r requirements.txt
+and then : pip install -r requirements.txt
 
 
-fourth : python yuer.py
+last : python yuer.py
 
 
 OK. it is over. good luck to you .
