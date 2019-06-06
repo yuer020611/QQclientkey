@@ -2,17 +2,29 @@
 QQ cilentkey is a good tool. 
 It needs a "requests" module.But i don't know how to fix it in linux. So i will show you the tool on  Windows.
 
+# Environment
+
+
 # Windows
-first : git clone https://github.com/yuer020611/QQcilentkey
+git clone https://github.com/yuer020611/QQcilentkey
 
 
-then  : cd QQcilentkey
+cd QQcilentkey
 
 
-and then : pip install -r requirements.txt
+pip install -r requirements.txt
 
 
-last : python yuer.py
+git clone https://github.com/yuer020611/request
 
 
-OK. it is over. good luck to you .
+cd request
+
+
+python setup.py install
+
+
+cd .. 
+
+
+python yuer.py
