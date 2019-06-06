@@ -12,9 +12,6 @@ git clone https://github.com/yuer020611/QQcilentkey
 cd QQcilentkey
 
 
-pip install -r requirements.txt
-
-
 git clone https://github.com/yuer020611/request
 
 
