@@ -3,7 +3,7 @@ QQ cilentkey is a good tool.
 It needs a "requests" module.But i don't know how to fix it in linux. So i will show you the tool on  Windows.If you want to see the teaching clear , click the url :http://www.anyuer.club/?id=58
 
 # Environment
-Git and Python. if you don't have anyone of them please download them.
+Git and Python. if you don't have any of them please download them.
 
 Git：https://gitforwindows.org/
 
