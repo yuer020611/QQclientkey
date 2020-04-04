@@ -1,26 +1,53 @@
-﻿import requests
+import requests
 import re
-s = requests.Session()
-s.get("https://xui.ptlogin2.qq.com/cgi-bin/xlogin?appid=636014201&s_url=http%3A%2F%2Fwww.qq.com%2Fqq2012%2FloginSuccess.htm&style=20&border_radius=1&target=self&maskOpacity=40")
 
-pt_local_tk = s.cookies.get_dict()['pt_local_token']
+url = "https://xui.ptlogin2.qq.com/cgi-bin/xlogin"
+querystring = {"appid":"715030901","daid":"73","hide_close_icon":"1","pt_no_auth":"1","s_url":"https://qun.qq.com/member.html"}
+payload = ""
+headers = {
+    'cache-control': "no-cache",
+    'Postman-Token': "7fab37a5-bf12-4c08-b952-030c828135bb"
+    }
 
-url = "https://localhost.ptlogin2.qq.com:4301/pt_get_uins?callback=ptui_getuins_CB&pt_local_tk=" + pt_local_tk
+response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
+cookies = str(response.cookies)
+#print(cookies)
+ret = re.findall(r"Cookie pt_local_token=(.*?) for",cookies)
+pt_local_token = ret[0]
+#print(pt_local_token)
 
-head = {'Referer':'https://xui.ptlogin2.qq.com/cgi-bin/xlogin?appid=636014201&s_url=http%3A%2F%2Fwww.qq.com%2Fqq2012%2FloginSuccess.htm'}
+url = "https://localhost.ptlogin2.qq.com:4301/pt_get_uins"
+querystring = {"callback":"ptui_getuins_CB","r":"0.0760575656488639","pt_local_tk":pt_local_token}
+cookie = "pt_local_token=" + pt_local_token
+payload = ""
+headers = {
+    'Referer': "https://xui.ptlogin2.qq.com",
+    'Cookie': cookie,
+    'cache-control': "no-cache",
+    'Postman-Token': "90c27990-deed-4283-a909-f097e63a4e78"
+    }
+response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
+body = response.text
+qquin = re.findall(r'"uin":(.*?),"face_index',body)
+#print (qquin)
+for test in qquin:
+    url = "https://localhost.ptlogin2.qq.com:4301/pt_get_st"
 
-r = s.get(url , headers=head )
+    querystring = {"clientuin":test,"callback":"ptui_getst_CB","r":"0.7284667321181328","pt_local_tk":pt_local_token}
 
-uin = re.findall(r'account":"(.*?)","',r.text)
-
-clientkey={}
-
-for each_uin in uin :
-    url = "https://localhost.ptlogin2.qq.com:4301/pt_get_st?clientuin=" + each_uin + "&callback=ptui_getst_CB&pt_local_tk=" + pt_local_tk
-    s.get(url,headers=head)
-    clientkey[each_uin]=s.cookies.get_dict()['clientkey']
+    payload = ""
+    headers = {
+        'Referer': "https://xui.ptlogin2.qq.com",
+        'Cookie': cookie,
+        'cache-control': "no-cache",
+        'Postman-Token': "e8292a8c-a09a-4f27-ac23-b945c92b5894"
+        }
     
-for each in clientkey.keys():
-    result =  each +":"+ clientkey[each];
-    print(result);
-input()
+    response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
+    ret =  str(response.cookies)
+    QQclientkey = re.findall(r'Cookie clientkey=(.*?) for .ptlogin2.qq.com' ,ret)
+    QQnum = re.findall(r'<Cookie clientuin=(.*?) for .ptlogin2.qq.com/>' ,ret)
+    i = 0
+    result = QQnum[i] + ": " + QQclientkey[i]
+    i = i+1
+    print(result)
