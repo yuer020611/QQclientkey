@@ -1,4 +1,5 @@
 # QQcilentkey
+Today I find the last way can not use , i hope you do not use it by the way of illegal!!
 QQ cilentkey is a good tool. 
 It needs a "requests" module.But i don't know how to fix it in linux. So i will show you the tool on  Windows.If you want to see the teaching clear , click the url :http://www.anyuer.club/?id=58
 
@@ -11,7 +12,7 @@ Python：https://www.python.org/
 
 
 # Windows CMD ONE BY ONE 
-git clone https://github.com/yuer020611/QQcilentkey
+git clone https://github.com/yuer020611/QQclientkey
 
 
 cd QQcilentkey
