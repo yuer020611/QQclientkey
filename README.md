@@ -15,7 +15,7 @@ Python：https://www.python.org/
 git clone https://github.com/yuer020611/QQclientkey
 
 
-cd QQcilentkey
+cd QQclientkey
 
 
 git clone https://github.com/yuer020611/request
